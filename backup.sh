@@ -19,6 +19,6 @@ if [ -f $BACKUP_FILE ]; then
 fi
 tar jcf $BACKUP_FILE $BACKUP_NAME
 chmod a-w $BACKUP_FILE
-if [ $BACKUP_DIR ne $TMP_DIR ]; then
+if [ $BACKUP_DIR -ne $TMP_DIR ]; then
     mv -f $BACKUP_FILE $BACKUP_DIR
 fi
