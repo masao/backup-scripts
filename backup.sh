@@ -4,15 +4,21 @@ TARGET=$1
 BACKUP_NAME=$2
 
 BACKUP_DIR=/project/backup
-TMP_DIR=/tmp
+TMP_DIR=/project/backup
 BACKUP_TMPDIR=$TMP_DIR/$BACKUP_NAME
 TIMESTAMP=`date +%Y%m%d`
 BACKUP_FILE=$BACKUP_NAME-$TIMESTAMP.tar.bz2
 
+BASEDIR=$PWD
 cd $TMP_DIR
-rsync -avz --delete-before --exclude=download/vm/ $TARGET $BACKUP_TMPDIR
+$BASEDIR/rsync.pl -avz --delete-before --exclude=download/vm/ $TARGET $BACKUP_TMPDIR
 
 cd `dirname $BACKUP_TMPDIR`
+if [ -f $BACKUP_FILE ]; then
+    rm -f $BACKUP_FILE
+fi
 tar jcf $BACKUP_FILE $BACKUP_NAME
 chmod a-w $BACKUP_FILE
-mv -f $BACKUP_FILE $BACKUP_DIR
+if [ $BACKUP_DIR ne $TMP_DIR ]; then
+    mv -f $BACKUP_FILE $BACKUP_DIR
+fi
