@@ -10,7 +10,7 @@ TIMESTAMP=`date +%Y%m%d`
 BACKUP_FILE=$BACKUP_NAME-$TIMESTAMP.tar.bz2
 
 cd $TMP_DIR
-rsync -avz $TARGET $BACKUP_TMPDIR
+rsync -avz --delete-before --exclude=download/vm/ $TARGET $BACKUP_TMPDIR
 
 cd `dirname $BACKUP_TMPDIR`
 tar jcf $BACKUP_FILE $BACKUP_NAME
