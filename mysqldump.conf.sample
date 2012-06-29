@@ -2,3 +2,4 @@ BACKUP_DIR: backup
 MYSQL_HOST: mysql.example.com
 MYSQL_USER: mysql
 MYSQL_PASSWORD: passwd
+MYSQL_DBNAME: foo
