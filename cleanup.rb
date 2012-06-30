@@ -45,8 +45,8 @@ if $0 == __FILE__
       end
    end
    # p keep.sort
-   Dir.glob( "#{ BACKUP_DIR }/*.tar.bz2" ) do |file|
-      if file =~ /(\d+)\.tar\.bz2\Z/o
+   Dir.glob( "#{ BACKUP_DIR }/*.bz2" ) do |file|
+      if file =~ /(\d+)(\.tar)?\.bz2\Z/o
          ymd = $1
          if keep.include? ymd
             STDERR.puts "keep #{ file }." if $DEBUG
