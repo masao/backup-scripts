@@ -7,7 +7,7 @@ export PATH="/usr/local/bin:$PATH"
 
 # 偶数日にのみ実行する
 day=`date +%-d`
-if [ `echo "$day % 2" | bc` -eq 1 ]; then
+if [ "$day" -eq 1 -o `echo "$day % 2" | bc` -eq 0 ]; then
   exit 0
 fi
 
